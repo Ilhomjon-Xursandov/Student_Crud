@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <style>
+        #rere{
+            color: white;
+            background-color: green;
+            cursor: pointer;
+            border: none;
+            padding: 7px 10px;
+            border-radius: 4%;
+            font-size: 10px;
+        }
+        #app{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .add{
+            padding: 1rem;
+            width: 40%;
+            margin-left: 30%;
+            text-align: left;
+        }
+        .button{
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4%;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: left; margin-left: 10px;" >
+    <button class="button" type="buttonq" onclick="location.href='/'" value="Home">Home</button>
+</div><br><br>
+
+<div class="add">
+    <form method="post"  action="api/students/addOrEditStudent">
+        <fieldset>
+            <legend>Add Student</legend>
+            <table id="app">
+                <tr>
+                    <td><label for="fistname">Fist Name: </label></td>
+                    <td><input type="text" name="fistname" id="fistname" required/> </td>
+                </tr>
+
+                <tr>
+                    <td><label for="lastname">Last Name: </label></td>
+                    <td><input type="text" name="lastname" id="lastname" required/> </td>
+                </tr>
+
+                <tr>
+                    <td><label for="phone">Phone: </label></td>
+                    <td><input type="text" name="phone" id="phone" required/> </td>
+                </tr>
+
+                <tr>
+                    <td><label for="isActive">Active: </label></td>
+                    <td><input type="text" name="isActive" id="isActive" required/> </td>
+                </tr>
+
+                <tr>
+                    <td><input id="rere" type="submit" value="Add Student"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

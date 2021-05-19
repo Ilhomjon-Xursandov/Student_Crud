@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index page</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+        table,td {
+            border: 2px lightgreen solid;
+            text-align: center;
+        }
+        tr:hover{
+            background-color: cadetblue;
+            color: black;
+        }
+        h1{
+            color: darkorange;
+            text-shadow: lightgrey;
+        }
+        button{
+            border: 1px lightblue solid;
+            background-color: dodgerblue;
+            color: white;
+            text-align: center;
+        }
+        button:hover{
+            color: gold;
+        }
+        #addButton{
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+
+<div calss="crud" align="center">
+    <h1>Crud simple</h1>
+    <table id = student>
+        <thead>
+        <th>Ismi</th><th>Familyasi</th><th>telefoni</th><th>Ativligi</th>
+        </thead>
+        <tr><td colspan="7"><button id = addButton onclick="add()">Add Student</button></td></tr>
+    </table>
+</div>
+
+
+    <script>
+        fetch("api/students/getAllStudents")
+            .then(response => {
+                if(!response.ok){
+                    alert("Error!")
+                }
+                return response.json();
+            })
+            .then(data => {
+                const html = data.object
+                .map(
+                    student => {
+                        return `
+                        <table>
+                            <tr>
+                                <td>${student.fistname}</td>
+                                <td>${student.lastname}</td>
+                                <td>${student.phone}</td>
+                                <td>${student.isActive}</td>
+                                <td><button onclick="">Edit</button></td>
+                                <td><button onclick="">Delete</button></td>
+                            </tr>
+                        </table>
+                        `
+                    }
+                ).join("");
+                document.querySelector("#student").insertAdjacentHTML("afterbegin", html)
+            })
+            .catch(
+                error => {
+                    alert(error)
+                }
+            );
+        function add() {
+            window.location.href="/add"
+        }
+
+        // fetch("api/students/getAllStudents")
+        //     .then(response => {
+        //         if(!response.ok){
+        //             alert("Error!")
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         const html = data.object
+        //         .map(
+        //             student => {
+        //                 return `${student.name} ${student.surname}<br>`
+        //             }
+        //         ).join("");
+        //         document.querySelector("#student").insertAdjacentHTML("afterbegin", html)
+        //     })
+        //     .catch(
+        //         error => {
+        //             alert(error)
+        //         }
+        //     );
+
+
+    </script>
+</body>
+</html>
